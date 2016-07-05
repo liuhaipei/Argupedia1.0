@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - argupedia@localhost" uuid="0c661bb2-92bf-4272-9f7b-0ae8aca2315b">
+    <database-info product="MySQL" version="5.7.13" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="mixed" quoted-identifiers="upper"/>
+    <schema name="" catalog="argupedia"/>
+    <table name="argument" schema="" catalog="argupedia" type="TABLE">
+      <column name="aid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="topic" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="conclusion" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="agreeNum" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="disagreeNum" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="scheme_sid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="aid"/>
+      <foreign-key name="fk_argument_scheme1" columns="scheme_sid" ref-table="scheme" ref-schema="" ref-catalog="argupedia" ref-columns="sid" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="fk_argument_criticalQuestion_argument1" table="argument_criticalQuestion" schema="" catalog="argupedia" columns="argument_aid"/>
+      <exported-key name="fk_argument_parameter_argument1" table="argument_parameter" schema="" catalog="argupedia" columns="argument_aid"/>
+      <exported-key name="fk_opinion_argument1" table="opinion" schema="" catalog="argupedia" columns="argument_aid"/>
+      <exported-key name="fk_tag_argument1" table="tag" schema="" catalog="argupedia" columns="argument_aid"/>
+      <exported-key name="fk_user_argument1" table="user" schema="" catalog="argupedia" columns="argument_aid"/>
+      <index name="fk_argument_scheme1_idx" unique="false" columns="scheme_sid"/>
+    </table>
+    <table name="argument_criticalQuestion" schema="" catalog="argupedia" type="TABLE">
+      <column name="acqid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="agreeNum" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="disagreeNum" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="argument_aid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="scheme_criticalQuestion_scqid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="acqid"/>
+      <foreign-key name="fk_argument_criticalQuestion_argument1" columns="argument_aid" ref-table="argument" ref-schema="" ref-catalog="argupedia" ref-columns="aid" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="fk_argument_criticalQuestion_scheme_criticalQuestion1" columns="scheme_criticalQuestion_scqid" ref-table="scheme_criticalQuestion" ref-schema="" ref-catalog="argupedia" ref-columns="scqid" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="fk_opinion_argument_criticalQuestion1" table="opinion" schema="" catalog="argupedia" columns="argument_criticalQuestion_acqid"/>
+      <index name="fk_argument_criticalQuestion_argument1_idx" unique="false" columns="argument_aid"/>
+      <index name="fk_argument_criticalQuestion_scheme_criticalQuestion1_idx" unique="false" columns="scheme_criticalQuestion_scqid"/>
+    </table>
+    <table name="argument_parameter" schema="" catalog="argupedia" type="TABLE">
+      <column name="apid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="parameter_value" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="argument_aid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="scheme_parameter_spid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="apid"/>
+      <foreign-key name="fk_argument_parameter_argument1" columns="argument_aid" ref-table="argument" ref-schema="" ref-catalog="argupedia" ref-columns="aid" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="fk_argument_parameter_scheme_parameter1" columns="scheme_parameter_spid" ref-table="scheme_parameter" ref-schema="" ref-catalog="argupedia" ref-columns="spid" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="fk_argument_parameter_argument1_idx" unique="false" columns="argument_aid"/>
+      <index name="fk_argument_parameter_scheme_parameter1_idx" unique="false" columns="scheme_parameter_spid"/>
+    </table>
+    <table name="opinion" schema="" catalog="argupedia" type="TABLE">
+      <column name="oid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="agree" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6"/>
+      <column name="hyperlink" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="argument_criticalQuestion_acqid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="argument_aid" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="oid"/>
+      <foreign-key name="fk_opinion_argument1" columns="argument_aid" ref-table="argument" ref-schema="" ref-catalog="argupedia" ref-columns="aid" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="fk_opinion_argument_criticalQuestion1" columns="argument_criticalQuestion_acqid" ref-table="argument_criticalQuestion" ref-schema="" ref-catalog="argupedia" ref-columns="acqid" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="fk_user_opinion1" table="user" schema="" catalog="argupedia" columns="opinion_oid"/>
+      <index name="fk_opinion_argument1_idx" unique="false" columns="argument_aid"/>
+      <index name="fk_opinion_argument_criticalQuestion1_idx" unique="false" columns="argument_criticalQuestion_acqid"/>
+    </table>
+    <table name="scheme" schema="" catalog="argupedia" type="TABLE">
+      <column name="sid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="sname" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="description" sqlType="VARCHAR" precision="450" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="sid"/>
+      <exported-key name="fk_argument_scheme1" table="argument" schema="" catalog="argupedia" columns="scheme_sid"/>
+      <exported-key name="fk_scheme_criticalQuestion_scheme" table="scheme_criticalQuestion" schema="" catalog="argupedia" columns="scheme_sid"/>
+      <exported-key name="fk_scheme_parameter_scheme1" table="scheme_parameter" schema="" catalog="argupedia" columns="scheme_sid"/>
+      <exported-key name="fk_scheme_statement_scheme1" table="scheme_statement" schema="" catalog="argupedia" columns="scheme_sid"/>
+    </table>
+    <table name="scheme_criticalQuestion" schema="" catalog="argupedia" type="TABLE">
+      <column name="scqid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="content" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="scheme_sid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="scqid"/>
+      <foreign-key name="fk_scheme_criticalQuestion_scheme" columns="scheme_sid" ref-table="scheme" ref-schema="" ref-catalog="argupedia" ref-columns="sid" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="fk_argument_criticalQuestion_scheme_criticalQuestion1" table="argument_criticalQuestion" schema="" catalog="argupedia" columns="scheme_criticalQuestion_scqid"/>
+      <index name="fk_scheme_criticalQuestion_scheme_idx" unique="false" columns="scheme_sid"/>
+    </table>
+    <table name="scheme_parameter" schema="" catalog="argupedia" type="TABLE">
+      <column name="spid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="parameter_name" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="scheme_sid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="spid"/>
+      <foreign-key name="fk_scheme_parameter_scheme1" columns="scheme_sid" ref-table="scheme" ref-schema="" ref-catalog="argupedia" ref-columns="sid" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="fk_argument_parameter_scheme_parameter1" table="argument_parameter" schema="" catalog="argupedia" columns="scheme_parameter_spid"/>
+      <index name="fk_scheme_parameter_scheme1_idx" unique="false" columns="scheme_sid"/>
+    </table>
+    <table name="scheme_statement" schema="" catalog="argupedia" type="TABLE">
+      <column name="ssid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="label" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="content" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="scheme_sid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="ssid"/>
+      <foreign-key name="fk_scheme_statement_scheme1" columns="scheme_sid" ref-table="scheme" ref-schema="" ref-catalog="argupedia" ref-columns="sid" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="fk_scheme_statement_scheme1_idx" unique="false" columns="scheme_sid"/>
+    </table>
+    <table name="tag" schema="" catalog="argupedia" type="TABLE">
+      <column name="tid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="content" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="argument_aid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="tid"/>
+      <foreign-key name="fk_tag_argument1" columns="argument_aid" ref-table="argument" ref-schema="" ref-catalog="argupedia" ref-columns="aid" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="fk_tag_argument1_idx" unique="false" columns="argument_aid"/>
+    </table>
+    <table name="user" schema="" catalog="argupedia" type="TABLE">
+      <column name="uid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="uname" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="password" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="roal" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="opinion_oid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="argument_aid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="uid"/>
+      <foreign-key name="fk_user_argument1" columns="argument_aid" ref-table="argument" ref-schema="" ref-catalog="argupedia" ref-columns="aid" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="fk_user_opinion1" columns="opinion_oid" ref-table="opinion" ref-schema="" ref-catalog="argupedia" ref-columns="oid" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="fk_user_argument1_idx" unique="false" columns="argument_aid"/>
+      <index name="fk_user_opinion1_idx" unique="false" columns="opinion_oid"/>
+    </table>
+  </data-source>
+</component>

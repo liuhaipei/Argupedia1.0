@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.url">jdbc:mysql://localhost:3306/argupedia</property>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.pool_size">20</property>
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+
+
+        <mapping class="com.entity.ArgumentEntity"/>
+        <mapping class="com.entity.ArgumentCriticalQuestionEntity"/>
+        <mapping class="com.entity.ArgumentParameterEntity"/>
+        <mapping class="com.entity.OpinionEntity"/>
+        <mapping class="com.entity.SchemeEntity"/>
+        <mapping class="com.entity.SchemeCriticalQuestionEntity"/>
+        <mapping class="com.entity.SchemeParameterEntity"/>
+        <mapping class="com.entity.SchemeStatementEntity"/>
+        <mapping class="com.entity.TagEntity"/>
+        <mapping class="com.entity.UserEntity"/>
+        <mapping class="com.entity.ArgumentHasTagEntity"/>
+        <!-- DB schema will be updated if needed -->
+        <!-- <property name="hbm2ddl.auto">update</property> -->
+    </session-factory>
+</hibernate-configuration>
