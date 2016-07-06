@@ -14,6 +14,6 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>action</servlet-name>
-        <url-pattern>*.do</url-pattern>
+        <url-pattern>*.jsp</url-pattern>
     </servlet-mapping>
 </web-app>

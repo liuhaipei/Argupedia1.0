@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="51477134">
+  <component name="DataSourceManagerImpl" format="xml" hash="3320987480">
     <data-source source="LOCAL" name="MySQL - argupedia@localhost" uuid="0c661bb2-92bf-4272-9f7b-0ae8aca2315b">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
