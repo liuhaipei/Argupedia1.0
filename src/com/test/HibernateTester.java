@@ -1,5 +1,7 @@
 package com.test;
 
+import com.dao.ArgumentDAO;
+import com.entity.ArgumentEntity;
 import com.entity.UserEntity;
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
@@ -9,50 +11,59 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.metadata.ClassMetadata;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
+import java.util.*;
 
 import java.util.Map;
 
 
 public class HibernateTester {
-    private static final SessionFactory ourSessionFactory;
-    private static final ServiceRegistry serviceRegistry;
-
-    static {
-        try {
-            Configuration configuration = new Configuration();
-            configuration.configure();
-
-            serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
-            ourSessionFactory = configuration.buildSessionFactory(serviceRegistry);
-        } catch (Throwable ex) {
-            throw new ExceptionInInitializerError(ex);
-        }
-    }
-
-    public static Session getSession() throws HibernateException {
-        return ourSessionFactory.openSession();
-    }
-
+    //    private static final SessionFactory ourSessionFactory;
+//    private static final ServiceRegistry serviceRegistry;
+//
+//    static {
+//        try {
+//            Configuration configuration = new Configuration();
+//            configuration.configure();
+//
+//            serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
+//            ourSessionFactory = configuration.buildSessionFactory(serviceRegistry);
+//        } catch (Throwable ex) {
+//            throw new ExceptionInInitializerError(ex);
+//        }
+//    }
+//
+//    public static Session getSession() throws HibernateException {
+//        return ourSessionFactory.openSession();
+//    }
+//
+//    public static void main(final String[] args) throws Exception {
+//
+//        final Session session = getSession();
+//        try {
+//
+//            System.out.println("querying all the managed entities...");
+//            final Map metadataMap = session.getSessionFactory().getAllClassMetadata();
+//            for (Object key : metadataMap.keySet()) {
+//                final ClassMetadata classMetadata = (ClassMetadata) metadataMap.get(key);
+//                final String entityName = classMetadata.getEntityName();
+//                final Query query = session.createQuery("from " + entityName);
+//                System.out.println("executing: " + query.getQueryString());
+//                for (Object o : query.list()) {
+//                    System.out.println("  " + o);
+//                }
+//            }
+//
+//
+//        } finally {
+//            session.close();
+//        }
+//    }
     public static void main(final String[] args) throws Exception {
-
-        final Session session = getSession();
-        try {
-
-            System.out.println("querying all the managed entities...");
-            final Map metadataMap = session.getSessionFactory().getAllClassMetadata();
-            for (Object key : metadataMap.keySet()) {
-                final ClassMetadata classMetadata = (ClassMetadata) metadataMap.get(key);
-                final String entityName = classMetadata.getEntityName();
-                final Query query = session.createQuery("from " + entityName);
-                System.out.println("executing: " + query.getQueryString());
-                for (Object o : query.list()) {
-                    System.out.println("  " + o);
-                }
-            }
-
-
-        } finally {
-            session.close();
+        ArgumentDAO test = new ArgumentDAO();
+        List<ArgumentEntity> argumentEntityList = test.getAllArguments();
+        for(int i=0; i<argumentEntityList.size(); i++){
+            int t = argumentEntityList.get(i).getAid();
+            System.out.println("We have argument id: "+t);
         }
     }
 }
