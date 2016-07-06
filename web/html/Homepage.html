@@ -1,11 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: HAPPY
-  Date: 05/07/2016
-  Time: 15:36
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -15,16 +8,16 @@
     <title>Welcome to Argupedia System</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap theme -->
-    <link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="../bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
 
     <link href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet">
     <script src="//cdn.bootcss.com/geopattern/1.2.3/js/base64.min.js"></script>
     <script src="//cdn.bootcss.com/geopattern/1.2.3/js/typedarray.min.js"></script>
 
     <!-- Styles for this page -->
-    <link href="Stylesheet/stylesheet.css" rel="stylesheet">
+    <link href="../Stylesheet/stylesheet.css" rel="stylesheet">
 
 </head>
 <body class="home-template" role="document">
@@ -63,8 +56,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <%--<a href="#">Login</a>--%>
-                    <a id="login" href="#login_container" role="button" class="btn" data-toggle="modal">Login</a>
+                    <a href="#">Login</a>
                 </li>
                 <li>
                     <a href="#">Register</a>
@@ -144,51 +136,17 @@
             </div>
             <div class="col-md-2 column">
                 <h4>Top Search Tags</h4>
-
+                
                 <h4>
                     <span class="label label-default">Default</span></br>
                     <span class="label label-primary">Primary</span></br>
                     <span class="label label-success">Success</span></br>
                     <span class="label label-info">Info</span></br>
                     <span class="label label-warning">Warning</span></br>
-                    <span class="label label-danger">Danger</span>
-                </h4>
+                    <span class="label label-danger">Danger</span></br></h4>
             </div>
         </div>
     </div>
-</div>
-
-
-<div class="modal fade" id="login_container" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title" id="myModalLabel">
-                    Log In
-                </h4>
-            </div>
-            <div class="modal-body">
-                <form role="form">
-                    <div class="form-group">
-                        <label for="exampleInputEmail">Email address</label><input type="email" class="form-control" id="exampleInputEmail" />
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword">Password</label><input type="password" class="form-control" id="exampleInputPassword" />
-                    </div>
-                    <div class="checkbox">
-                        <label><input type="checkbox" />Save email address and password.</label>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">return</button>
-                <button type="button" class="btn btn-default">login</button>
-            </div>
-        </div>
-
-    </div>
-
 </div>
 
 <footer id="footer" class="footer hidden-print">
@@ -216,7 +174,8 @@
 <script src="//cdn.bootcss.com/localforage/1.4.2/localforage.min.js"></script>
 <script src="/assets/js/site.min.js"></script>
 
-
 </body>
 </html>
 
+</body>
+</html>
